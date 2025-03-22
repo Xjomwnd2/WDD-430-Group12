@@ -5,7 +5,7 @@ import HeroImg from "./ui/landing-page/hero-img";
 export default function Home() {
   return (
     <div>
-      landing page
+      {/* landing page */}
       <HeroImg />
     </div>
   );
