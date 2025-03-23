@@ -2,16 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 .wrapper{
-    border: #92aa83 2px solid;
     width: 70%;
     height: 95vh;
     margin: 1rem auto;
 }
 
-.wrapper h2, .wrapper h3{
+.wrapper h2{
     font-family: "Neuton", serif;
     font-weight: 700;
     padding: 1rem;
+}
+
+.wrapper h3{
+    font-size: 2rem;
+    font-family: "Neuton", serif;
+    font-weight: 700;
 }
 
 .wrapper h2{
@@ -30,7 +35,7 @@
 
 .image{
     padding: 5px;
-    height: 100%;
+    border-radius: 1rem;
 }
 
 .card:nth-child(even) .details{
@@ -41,7 +46,16 @@
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    padding: .5rem;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: left;
+    gap: .5rem;
+    width: 50%;
 }
 
 
