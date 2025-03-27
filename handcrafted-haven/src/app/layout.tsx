@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "WDD 430 - Handcrafted Haven Group 12",
-  description: "Handcrafted Haven Group 12 Project",
+  description: " A virtual marketplace, connecting talented creators with potential customers",
   authors: [{name: "Sariah Wandler, Shayla Foley, Boluwatife Omotoyinbo, and Ezekiel Rindello"}]
 };
 
