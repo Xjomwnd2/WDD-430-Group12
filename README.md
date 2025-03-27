@@ -4,10 +4,7 @@ Team 12's Group Repo for WDD430 Term 2 2025.
 ## Team Members 
 - Sariah Wandler
 - Shayla Foley
-- Joel Mwanda
-- Sakhile Mamba
 - Boluwatife Adebiyi Omotoyinbo
-- Aaron Magallanes
 - Ezequiel Rindello
 
 ## Technology
@@ -18,7 +15,7 @@ Team 12's Group Repo for WDD430 Term 2 2025.
 - Deployment / Cloud Platform: Vercel
 
 ## Deploy Link
-- Not currently live
+- https://handcrafted-haven-gamma.vercel.app/
 
 ## Given Project Overview
 
