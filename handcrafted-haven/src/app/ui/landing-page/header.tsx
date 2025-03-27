@@ -17,6 +17,7 @@ export default function Header() {
           <NavLink name="Seller Profiles" href="/profiles" />
           <NavLink name="Product Listings" href="/products" />
           <NavLink name="Reviews and Ratings" href="/reviews" />
+          <NavLink name="My cart" href="/cart" />
           <Link href="/account" className={styles.LoginButton}>
             Log In
           </Link>
