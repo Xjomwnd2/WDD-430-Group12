@@ -10,25 +10,25 @@ export default function SiteInfoWrapper() {
       icon: <CircleUser strokeWidth={1.5} />,
       title: "About",
       description:
-        "Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very short story.",
+        "Handcrafted Haven connects artisans with buyers who value unique, handmade goods. More than a marketplace, it’s a community that celebrates craftsmanship and creativity.",
     },
     {
       icon: <Globe strokeWidth={1.5} />,
       title: "Services",
       description:
-        "Body text for whatever you'd like to suggest. Add main takeaway points, quotes, anecdotes, or even a very short story.",
+        "We provide artisans with easy-to-use storefronts, secure transactions, and branding tools. Buyers can discover one-of-a-kind products while supporting independent creators.",
     },
     {
       icon: <CircleHelp strokeWidth={1.5} />,
       title: "Support",
       description:
-        "Body text for whatever you'd like to claim. Add main takeaway points, quotes, anecdotes, or even a very short story.",
+        "Our team is here to help, whether you're setting up a shop or making a purchase. From technical assistance to marketing tips, we ensure a smooth experience.",
     },
     {
       icon: <Lock strokeWidth={1.5} />,
       title: "Privacy",
       description:
-        "Body text for whatever you'd like to type. Add main takeaway points, quotes, anecdotes, or even a very short story.",
+        "We prioritize your privacy with secure transactions and data protection. Your information is safe with us, and we never share it without consent.",
     },
   ];
 
