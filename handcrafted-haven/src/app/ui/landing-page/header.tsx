@@ -14,7 +14,7 @@ export default function Header() {
         </div>
 
         <div className={styles.NavRight}>
-          <NavLink name="Seller Profiles" href="/profiles" />
+          <NavLink name="Seller Profiles" href="/sellers" />
           <NavLink name="Product Listings" href="/products" />
           <NavLink name="Reviews and Ratings" href="/reviews" />
           <NavLink name="My cart" href="/cart" />
