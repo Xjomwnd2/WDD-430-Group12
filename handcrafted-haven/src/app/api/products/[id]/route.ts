@@ -3,9 +3,9 @@ import { query } from "../../../../lib/db";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = context.params;
 
   try {
     const result = await query("SELECT * FROM products WHERE product_id = $1", [
