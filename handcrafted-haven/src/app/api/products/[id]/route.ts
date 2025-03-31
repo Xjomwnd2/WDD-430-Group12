@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 import { query } from "../../../../lib/db";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+interface Params {
+  params: { id: string };
+}
+
+export async function GET(request: Request, { params }: Params) {
+  const { id } = await params;
 
   try {
     const result = await query("SELECT * FROM products WHERE product_id = $1", [
