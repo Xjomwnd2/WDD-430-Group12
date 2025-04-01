@@ -20,7 +20,7 @@ function ProductTypeCard ({ imageUrl, title, description }:
       description: string
     }) {
     return (
-        <Link className={styles.card} href="./src/app/product-type">
+        <Link className={styles.card} href="/products">
             <div className={styles.details}>
                 <h3>{title}</h3>
                 <p>{description}</p>
