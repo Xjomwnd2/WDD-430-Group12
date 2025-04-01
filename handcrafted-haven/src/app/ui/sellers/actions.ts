@@ -1,19 +1,29 @@
 export async function fetchSellerInfo(user_id: string) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/sellers/${user_id}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch sellers list");
+  try {
+    const res = await fetch(`${apiUrl}/sellers/${user_id}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch seller info");
+    }
+    const sellerInfo = await res.json();
+    return sellerInfo;
+  } catch (error) {
+    console.error("Error fetching seller info:", error);
+    return [];
   }
-  const sellerProfile = await res.json();
-  return sellerProfile;
 }
 
 export async function fetchSellersList() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/sellers`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch sellers list");
+  try {
+    const res = await fetch(`${apiUrl}/sellers`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch sellers list");
+    }
+    const sellersList = await res.json();
+    return sellersList;
+  } catch (error) {
+    console.error("Error fetching sellers list:", error);
+    return [];
   }
-  const sellersList = await res.json();
-  return sellersList;
 }
