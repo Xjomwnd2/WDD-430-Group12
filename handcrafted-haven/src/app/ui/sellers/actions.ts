@@ -1,11 +1,3 @@
-export async function fetchSellerProductList(user_id: string) {
-  const data = await fetch(
-    `https://handcrafted-haven-gamma.vercel.app/api/sellers/${user_id}/products`
-  );
-  const productsList = await data.json();
-  return productsList;
-}
-
 export async function fetchSellerInfo(user_id: string) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${apiUrl}/sellers/${user_id}`);
