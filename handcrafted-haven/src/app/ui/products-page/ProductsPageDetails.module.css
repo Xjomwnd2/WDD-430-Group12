@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-
 .wrapper {
   font-family: "Neuton", serif;
   max-width: 1200px;
@@ -9,9 +8,122 @@
   padding: 5rem 2rem;
 }
 
+.wrapper h1 {
+  color: rgba(0, 0, 0, 0.9);
+  font-family: "Neuton", serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.wrapper p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.8);
+  margin-left: 10px;
+  padding: 5px;
+}
+
 .productImage {
   max-width: 50%;
   height: auto;
   border-radius: 8px;
   margin-top: 10px;
+}
+
+.cartButton {
+  font-family: "Neuton", serif;
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #000;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  min-width: 300px;
+}
+
+.popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 3rem 1.5rem;
+  }
+  .wrapper h1 {
+    font-size: 2rem;
+  }
+  .cartButton {
+    font-size: 1rem;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 2rem 1rem;
+  }
+  .wrapper h1 {
+    font-size: 1.8rem;
+  }
+  .productImage {
+    max-width: 80%;
+  }
+  .cartButton {
+    font-size: 1rem;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 1.5rem 0.5rem;
+  }
+  .wrapper h1 {
+    font-size: 1.5rem;
+  }
+  .productImage {
+    max-width: 100%;
+  }
+  .cartButton {
+    font-size: 0.9rem;
+    min-width: 150px;
+  }
 }
