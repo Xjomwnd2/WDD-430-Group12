@@ -1,5 +1,4 @@
 import ContactForm from "@/app/ui/sellers/contact-form";
-// import ProductsWrapper from "@/app/ui/sellers/products";
 import SellerInfo from "@/app/ui/sellers/seller-info";
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
@@ -9,7 +8,6 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   return (
     <div>
       <SellerInfo user_id={id} />
-      {/* <ProductsWrapper user_id={id} /> */} {/* this is not working */}
       <ContactForm />
     </div>
   );
