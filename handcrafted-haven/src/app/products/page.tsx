@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import styles from "../ui/products-page/ProductsPage.module.css";
 
 interface Product {
   product_id: number;
@@ -41,7 +42,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Product Listings</h1>
       <ul>
         {products.map((product) => (

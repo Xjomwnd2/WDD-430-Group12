@@ -3,6 +3,7 @@
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import styles from "../../ui/products-page/ProductsPageDetails.module.css";
 
 // Define the Product type
 interface Product {
@@ -34,15 +35,17 @@ export default function ProductDetail() {
 
   if (!product) return <p>Loading...</p>;
 
+  console.log("Product details:", product);
+
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>{product.title}</h1>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       <p>Category: {product.category}</p>
-      {product.images.map((image, index) => (
-        <img key={index} src={image} alt={product.title} />
-      ))}
+      {product.images.map((image, index) => {
+        return <img className={styles.productImage} key={index} src={image} alt={product.title} />;
+      })}
     </div>
   );
 }
