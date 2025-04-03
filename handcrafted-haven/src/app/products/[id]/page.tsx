@@ -14,9 +14,17 @@ interface Product {
   images: string[];
 }
 
+interface Review {
+  review_id: number;
+  rating: number;
+  comment: string;
+  username: string;
+}
+
 export default function ProductDetail() {
   const params = useParams();
   const [product, setProduct] = useState<Product | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
@@ -32,10 +40,14 @@ export default function ProductDetail() {
         }
       })
       .catch((error) => console.error("Error fetching product:", error));
+
+    fetch(`/api/reviews/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((error) => console.error("Error fetching reviews:", error));
   }, [params.id]);
 
   function addToCart() {
-    // program the logic to add the product to the cart
     console.log("Product added to cart:", product);
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 5000);
@@ -54,24 +66,40 @@ export default function ProductDetail() {
         </p>
         <p>Category: {product.category}</p>
         <br />
-        {product.images.map((image, index) => {
-          return (
-            <img
-              className={styles.productImage}
-              key={index}
-              src={image}
-              alt={product.title}
-            />
-          );
-        })}
+        {product.images.map((image, index) => (
+          <img
+            className={styles.productImage}
+            key={index}
+            src={image}
+            alt={product.title}
+          />
+        ))}
       </div>
+
       <div>
         <br />
         <button className={styles.cartButton} onClick={addToCart}>
           Add to Cart
         </button>
       </div>
+
       {showPopup && <div className={styles.popup}>Product added to cart!</div>}
+
+      <br />
+      <br />
+      <h1>Reviews</h1>
+      {reviews.length > 0 ? (
+        <ul className={styles.reviewList}>
+          {reviews.map((review, index) => (
+            <li key={index}>
+              <p className={styles.reviewRating}>Rating: {review.rating} ⭐</p>
+              <p className={styles.reviewComment}>{review.comment}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }
