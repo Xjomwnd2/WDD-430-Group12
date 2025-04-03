@@ -1,5 +1,6 @@
 import HeroImg from "./ui/landing-page/hero-img";
 import ProductTypesWrapper from "./ui/landing-page/product-type";
+import FeaturedProductsWrapper from "./ui/landing-page/FeaturedProductsWrapper";
 import SiteInfoWrapper from "./ui/landing-page/site-info";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       {/* landing page */}
       <HeroImg />
       <ProductTypesWrapper />
+      <FeaturedProductsWrapper/>
       <SiteInfoWrapper />
     </div>
   );
