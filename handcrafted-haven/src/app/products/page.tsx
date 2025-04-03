@@ -22,18 +22,28 @@ async function getProducts(): Promise<Product[]> {
     throw new Error("Failed to fetch products");
   }
 
-  const data = await res.json();
-  return data;
+  return res.json();
 }
 
 export default function Page() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedPrice, setSelectedPrice] = useState<string>("");
 
   useEffect(() => {
     async function fetchProducts() {
       try {
         const productsData = await getProducts();
         setProducts(productsData);
+        setFilteredProducts(productsData);
+
+        // Extract unique categories from products
+        const uniqueCategories = [
+          ...new Set(productsData.map((product) => product.category)),
+        ];
+        setCategories(uniqueCategories);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -41,11 +51,56 @@ export default function Page() {
     fetchProducts();
   }, []);
 
+  // 🔍 **Filter products based on user selections**
+  useEffect(() => {
+    let filtered = [...products];
+
+    if (selectedCategory) {
+      filtered = filtered.filter((product) => product.category === selectedCategory);
+    }
+
+    if (selectedPrice) {
+      const [min, max] = selectedPrice.split("-").map(Number);
+      filtered = filtered.filter(
+        (product) => product.price >= min && product.price <= max
+      );
+    }
+
+    setFilteredProducts(filtered);
+  }, [selectedCategory, selectedPrice, products]);
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Product Listings</h1>
+
+      {/* 🔹 Filter Section */}
+      <div className={styles.filters}>
+        {/* Category Filter */}
+        <label>Category:</label>
+        <select onChange={(e) => setSelectedCategory(e.target.value)}>
+          <option value="">All</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+
+        {/* Price Filter */}
+        <label>Price:</label>
+        <select onChange={(e) => setSelectedPrice(e.target.value)}>
+          <option value="">All</option>
+          <option value="0-50">Under $50</option>
+          <option value="50-100">$50 - $100</option>
+          <option value="100-500">$100 - $500</option>
+          <option value="500-1000">$500 - $1000</option>
+          <option value="1000-9999">Over $1000</option>
+        </select>
+      </div>
+
+      {/* 🔹 Product List */}
       <ul className={styles.productList}>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <li key={product.product_id} className={styles.productItem}>
             <h2>{product.title}</h2>
             {/* <p>{product.description}</p>
@@ -57,56 +112,20 @@ export default function Page() {
                   key={index}
                   src={image}
                   alt={`Product ${product.product_id} image`}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                  }}
                 />
               ))}
             </div>
             <Link href={`/products/${product.product_id}`}>
-              <button>View Details</button>
+              <button className={styles.button}>View Details</button>
             </Link>
           </li>
         ))}
       </ul>
     </div>
   );
-}  
-//   return (
-//     <div className={styles.wrapper}>
-//       <h1>Product Listings</h1>
-//       <ul>
-//         {products.map((product) => (
-//           <li key={product.product_id}>
-//             <h2>{product.title}</h2>
-//             <p>{product.description}</p>
-//             <p>Price: ${product.price}</p>
-//             <p>Category: {product.category}</p>
-//             <div>
-//               {product.images.map((image, index) => (
-//                 <img
-//                   key={index}
-//                   src={image}
-//                   alt={`Product ${product.product_id} image`}
-//                   style={{
-//                     width: "100px",
-//                     height: "100px",
-//                     objectFit: "cover",
-//                   }}
-//                 />
-//               ))}
-//             </div>
-//             <Link href={`/products/${product.product_id}`}>
-//               <button
-//                 style={{
-//                   marginTop: "10px",
-//                   padding: "5px 10px",
-//                   cursor: "pointer",
-//                 }}
-//               >
-//                 View Details
-//               </button>
-//             </Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
+}
