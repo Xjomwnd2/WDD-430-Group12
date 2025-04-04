@@ -1,18 +1,19 @@
 import styles from "./Header_Footer.module.css";
+
+import Link from "next/link";
 import {
   FaFacebookF,
   FaLinkedinIn,
   FaYoutube,
   FaInstagram,
 } from "react-icons/fa";
-import Link from "next/link";
-
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         {/* Social Media Links */}
+        
         <div className={styles.socialMedia}>
           <div>
             <h4>Handcrafted Haven</h4>
