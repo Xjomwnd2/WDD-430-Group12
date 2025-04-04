@@ -27,3 +27,18 @@ export async function fetchSellersList() {
     return [];
   }
 }
+
+export async function fetchProductList() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  try{
+    const res = await fetch(`${apiUrl}/products`);
+    if(!res.ok) {
+      throw new Error("Failed to fetch product list");
+    }
+    const productsList = await res.json();
+    return productsList;
+  } catch (error) {
+    console.error("Error fetching products list:", error);
+    return [];
+  }
+}

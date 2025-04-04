@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { fetchSellerInfo } from "./actions";
+import styles from "@/app/ui/sellers/sellers.module.css";
 
 interface Profile{
     user_id: number,
@@ -15,15 +16,17 @@ export default async function SellerInfo({user_id}: {user_id: string}){
     
     return (
         <>
-        <section>
+        <section className={styles.profileInfo}>
             <h1> {profile.username} </h1>
-            <p></p>
+            <p>This is an example Bio for a seller. They are from somewhere. Got into craft because blank. Enjoy these hobbies: biking, swimming, photography</p>
         </section>
         <Image
+            className={styles.profileImage}
             src={'/images/profile.jpg'}
             alt={imageAlt}
             height={400}
-            width={200} />
+            width={200} 
+            objectFit="contain"/>
         </>
     )
 }
