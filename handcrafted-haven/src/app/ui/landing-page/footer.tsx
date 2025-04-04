@@ -20,12 +20,7 @@ export default function Footer() {
             <p>Connecting Artisans with Buyers</p>
             <p>© {year} Handcrafted Haven. All rights reserved.</p>
           </div>
-          <div className={styles.socialMediaIcons}>
-            <FaFacebookF />
-            <FaLinkedinIn />
-            <FaYoutube />
-            <FaInstagram />
-          </div>
+         
         </div>
 
         {/* Navigation Links */}
