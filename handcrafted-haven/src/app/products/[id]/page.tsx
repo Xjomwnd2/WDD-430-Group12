@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import styles from "../../ui/products-page/ProductsPageDetails.module.css";
+import styles from "../../ui/details-page/ProductsPageDetails.module.css";
 import Loading from "../../ui/products-page/loading";
 
 interface Product {

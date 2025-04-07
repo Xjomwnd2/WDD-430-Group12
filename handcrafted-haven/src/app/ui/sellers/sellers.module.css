@@ -2,173 +2,260 @@
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 .main {
-    display: flex;
-    min-height: 100vh;
-    flex-wrap: wrap;
-    align-content: start;
+  display: flex;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-content: start;
 }
 
-.profileLink{
-    padding: 1rem;
-    background-color: #92aa83;
-    border-radius: 10px;
-    width: 16%;
-    min-width: 200px;
-    max-height: 250px;
-    margin: 1rem 2% ;
+.profileLink {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  width: 16%;
+  min-width: 200px;
+  max-height: 250px;
+  margin: 1rem 2%;
+  transition: transform 0.2s ease-in-out;
 }
 
-.profileLink h2{
-    font-family: "Neuton", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
+.profileLink:hover {
+  transform: scale(1.05);
 }
 
-.profileImg{
-    display: block;
-    margin: 0 auto;
-}
-
-.main h1 {
-    grid-column: 1 / 6;
-    text-align: center;
-    width: 100%;
-    height: 3rem;
-}
-
-.profileDetail {
-    width: 90%;
-    margin: 1rem auto;
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 1rem;
-}
-
-.profileInfo {
-    padding: 1rem;
-    text-align: center;
-}
-
-.profileInfo h1 {
-    font-family: "Neuton", serif;
-    font-size: 2rem;
-    font-weight: 700;
-    padding: 2rem;
-}
-
-.profileInfo p{
-    font-family: "Roboto", sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-}
-
-.profileImage {
-    display: block;
-    padding: 2rem;
-    width: 100%;
-    height: auto;
-    border-radius: 20%;
-    background-color: #92aa83;
+.profileLink h2 {
+  font-family: "Neuton", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .profileImg {
-    height: 100px;
-    width: auto;
+  display: block;
+  margin: 0 auto;
+  height: 100px;
+  width: auto;
+  object-fit: cover;
 }
 
-.profileLink button{
-    width: 100%;
+.main h1 {
+  grid-column: 1 / 6;
+  text-align: center;
+  width: 100%;
+  height: 3rem;
+  text-align: left;
+  color: #000000e6;
+  font-family: "Neuton", serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 5% 0%;
 }
 
-.productsList{
-    gap: 1rem;
-    display: grid;
-    width: 80%;
-    margin: 0 auto;
-    padding: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    font-family: "Neuton", serif;
+.profileDetail {
+  width: 90%;
+  margin: 5% auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
 }
 
-.productsList h2{
-    grid-column: 1 / 4;
-    font-family: 'Neuton', serif;
+.profileInfo {
+  margin-top: 5%;
+  padding: 1rem;
+  text-align: center;
 }
 
-.productCard{
-    padding: 1rem;
-    background-color: #92aa83;
+.profileInfo h1 {
+  font-family: "Neuton", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 2rem;
 }
 
-.productCard h2{
-    font-family: "Neuton", serif;
-    font-size: 1.5rem;
-    text-align: center;
-    object-fit: contain;
+.profileInfo p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #555;
 }
 
-.productCard img{
-    margin: 1rem auto;
-    display: block;
+.profileImage {
+  display: block;
+  justify-self: center;
+  padding: 2rem;
+  width: 60%;
+  height: auto;
+  border-radius: 20%;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
 }
 
-.productCard a, .profileLink a{
-    text-decoration: none;
+.profileLink button {
+  width: 100%;
 }
 
-.productCard button, .contactForm button, .main button{
-    padding: .75rem;
-    font-size: 1rem;
-    width: 70%;
-    margin: 1rem auto;
-    display: block;
-    background-color: #e9d5c4;
-    font-family: 'roboto', sans-serif;
-    font-weight: 700;
-    text-decoration: none;
+.productsList {
+  gap: 1rem;
+  display: grid;
+  width: 80%;
+  margin: 5% auto;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  font-family: "Neuton", serif;
 }
 
-.main button{
-   min-width: 100px;
+.productsList h2 {
+  grid-column: 1 / -1;
+  font-family: "Neuton", serif;
 }
 
-
-.productCard button:hover, .contactForm button:hover, .main button:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.productCard {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
 }
 
-.contactForm{
-    margin: 1rem auto;
-    padding: .5rem;
-    border: rgba(0, 0, 0, 0.308) solid 2px;
-    border-radius: 5px;
-    width: 50%;
+.productCard:hover {
+  transform: scale(1.05);
 }
 
-.contactForm label{
-    display: block;
-    font-family: "Neuton", serif;
-    font-size: 1.25rem;
-    font-weight: 500;
+.productCard h2 {
+  font-family: "Neuton", serif;
+  font-size: 1.5rem;
+  text-align: center;
+  object-fit: contain;
 }
 
-.contactForm input {
-    width: 90%;
-    padding: .5rem;
-    display: block;
-    margin: 0 auto;
+.productCard img {
+  margin: 1rem auto;
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.productCard a,
+.profileLink a {
+  text-decoration: none;
+}
+
+.productCard button,
+.contactForm button,
+.main button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 70%;
+  margin: 1rem auto;
+  display: block;
+  background-color: #000;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  min-width: 100px;
+}
+
+.productCard button:hover,
+.contactForm button:hover,
+.main button:hover {
+  background-color: #92aa83;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.contactForm {
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5%;
+}
+
+.contactForm h2 {
+  font-family: "Neuton", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2f2f2f;
+}
+
+.contactForm label {
+  display: block;
+  font-family: "Neuton", serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  background-color: #fff;
+  color: #333;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  border-color: #92aa83;
+  box-shadow: 0 0 0 3px rgba(146, 170, 131, 0.3);
+  outline: none;
 }
 
 .contactForm textarea {
-    display: block;
-    width: 90%;
-    height:200px;
-    padding: .5rem;
-    resize: none;
-    margin: 0 auto;
+  height: 120px;
+  resize: vertical;
 }
 
-.message{
-    height: 5rem;
+.contactForm button {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  margin-top: 1.5rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contactForm button:hover {
+  background-color: #92aa83;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .profileImage {
+    display: none;
+  }
+  .profileDetail {
+    grid-template-columns: 1fr;
+  }
 }
