@@ -4,6 +4,7 @@ Team 12's Group Repo for WDD430 Term 2 2025.
 ## Team Members 
 - Sariah Wandler
 - Shayla Foley
+- Joel Ndiba Mwaura
 - Boluwatife Adebiyi Omotoyinbo
 - Ezequiel Rindello
 
