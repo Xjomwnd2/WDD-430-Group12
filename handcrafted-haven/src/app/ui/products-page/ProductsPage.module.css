@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -9,16 +8,22 @@
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 20px;
+  color: #000000e6;
+  font-family: "Neuton", serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: left;
+  margin: 5% 0%;
 }
 
 /* 🔹 Filters Section */
 .filters {
+  font-family: "Roboto", sans-serif;
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  align-items: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin: 5% 0%;
 }
 
 .filters label {
@@ -35,10 +40,11 @@
 /* 🔹 Product Grid */
 .productList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   list-style: none;
   padding: 0;
+  margin: 8% 0%;
 }
 
 .productItem {
@@ -74,15 +80,39 @@
 }
 
 .button {
-  background: #007bff;
-  color: white;
+  font-family: "Roboto", serif;
+  padding: 5px 10px;
+  background-color: #000;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   cursor: pointer;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  min-width: 100px;
 }
 
 .button:hover {
   background: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .productList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .productList {
+    grid-template-columns: 1fr;
+  }
 }
