@@ -1,3 +1,4 @@
+/* eslint-disable padded-blocks */
 "use client";
 
 import { useState } from "react";
@@ -62,7 +63,7 @@ export default function LoginPage() {
         <button type="submit">Log In</button>
 
         <p style={{ marginTop: "1rem", textAlign: "center" }}>
-          Don't have an account? <Link href="/register">Create Account</Link>
+          Dont have an account? <Link href="/register">Create Account</Link>
         </p>
       </form>
     </div>
