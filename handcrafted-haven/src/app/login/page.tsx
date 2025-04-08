@@ -25,6 +25,7 @@ export default function LoginPage() {
 
     if (res.ok) {
       localStorage.setItem("isLogged", "true");
+      localStorage.setItem("userMail", email);
       router.push("/account");
     } else {
       setError(data.message || "Login failed");
@@ -40,6 +41,7 @@ export default function LoginPage() {
         <input
           type="email"
           id="email"
+          placeholder="test@test.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -49,6 +51,7 @@ export default function LoginPage() {
         <input
           type="password"
           id="password"
+          placeholder="test01"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

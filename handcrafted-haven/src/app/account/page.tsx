@@ -1,19 +1,64 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "../ui/products-page/loading";
 
+type User = {
+  user_id: number;
+  username: string;
+  email: string;
+  role: "seller" | "buyer";
+};
+
 export default function Page() {
   const router = useRouter();
+  const [userData, setUserData] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const isLogged = localStorage.getItem("isLogged");
+    const email = localStorage.getItem("userMail");
 
-    if (!isLogged) {
+    if (!isLogged || !email) {
       router.push("/login");
+      return;
     }
+
+    const fetchUser = async () => {
+      try {
+        const res = await fetch(`/api/login/${encodeURIComponent(email)}`);
+        if (!res.ok) throw new Error("user not found");
+        const data = await res.json();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error while loading the user:", error);
+        router.push("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
   }, [router]);
 
-  return <Loading />;
+  if (loading) return <Loading />;
+
+  return (
+    <div>
+      <h1>Bienvenido, {userData?.username}</h1>
+      <p>Correo: {userData?.email}</p>
+      <p>Rol: {userData?.role === "seller" ? "Seller" : "Buyer"}</p>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("isLogged");
+          localStorage.removeItem("userMail");
+          router.push("/login");
+        }}
+      >
+        Log Out
+      </button>
+    </div>
+  );
 }
