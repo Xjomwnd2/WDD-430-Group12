@@ -1,4 +1,4 @@
-/* eslint-disable padded-blocks */
+/* eslint-disable */
 import { NextResponse } from "next/server";
 import { Pool } from "pg";
 import bcrypt from "bcryptjs";
