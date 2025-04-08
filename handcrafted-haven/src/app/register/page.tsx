@@ -1,3 +1,4 @@
+/* eslint-disable padded-blocks */
 "use client";
 
 import { useState } from "react";
