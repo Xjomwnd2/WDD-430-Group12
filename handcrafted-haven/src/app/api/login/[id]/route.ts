@@ -6,8 +6,11 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const email = decodeURIComponent(params.id);
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
+  const email = decodeURIComponent(url.pathname.split("/").pop() || "");
+  console.log("email", email);
+  console.log("url", url.pathname.split("/").pop() || "");
 
   if (!email) {
     return NextResponse.json({ error: "email not found" }, { status: 400 });
