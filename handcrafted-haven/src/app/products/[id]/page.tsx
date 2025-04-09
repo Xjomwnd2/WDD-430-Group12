@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import styles from "../../ui/details-page/ProductsPageDetails.module.css";
 import Loading from "../../ui/products-page/loading";
+import { addProductToCart } from "@/app/ui/cart/actions";
 
 interface Product {
+  product_id: string;
   title: string;
   description: string;
   price: string;
@@ -47,10 +49,17 @@ export default function ProductDetail() {
       .catch((error) => console.error("Error fetching reviews:", error));
   }, [params.id]);
 
-  function addToCart() {
-    console.log("Product added to cart:", product);
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 5000);
+  function addToCart(product_id: string) {
+    try{
+      addProductToCart(product_id)
+      console.log("Product added to cart:", product);
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 5000);
+    } catch (error) {
+      console.log("Unable to add Product to cart", error);
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 5000);
+    }
   }
 
   if (!product) return <Loading />;
@@ -78,7 +87,7 @@ export default function ProductDetail() {
 
       <div>
         <br />
-        <button className={styles.cartButton} onClick={addToCart}>
+        <button className={styles.cartButton} onClick={() => addToCart(product.product_id)}>
           Add to Cart
         </button>
       </div>

@@ -16,7 +16,7 @@ interface Product {
 
 async function getProducts(): Promise<Product[]> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/products`);
+  const res = await fetch(`https://handcrafted-haven-gamma.vercel.app/api/products`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");
