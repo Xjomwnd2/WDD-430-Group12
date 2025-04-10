@@ -2,22 +2,70 @@
 
 import CartList from "@/app/ui/cart/cartList";
 import { calculateCartTotal } from "../ui/cart/actions";
+import { useRouter } from "next/navigation";
+import Loading from "../ui/products-page/loading";
+import { useEffect, useState } from "react";
+import styles from "../ui/cart/CartList.module.css";
 
 export default function Page() {
-  let total = calculateCartTotal();
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
+  const [total, setTotal] = useState<number>(0);
+  console.log(email);
 
-  const deleteList = () => {
-    localStorage.setItem("haven-cart", JSON.stringify(""));
+  const fetchTotal = async () => {
+    const total = await calculateCartTotal();
+    setTotal(total);
   };
 
-  return (
-    <>
-      <h1>My Cart</h1>
-      <CartList />
-      <div>
-        <h3>Total: {total}</h3>
-        <button onClick={() => deleteList()}>Delete List</button>
+  useEffect(() => {
+    const storedIsLogged = localStorage.getItem("isLogged");
+    const storedEmail = localStorage.getItem("userMail");
+
+    if (!storedIsLogged || !storedEmail) {
+      router.push("/login");
+      return;
+    }
+
+    setIsLogged(true);
+    setEmail(storedEmail);
+    setIsClient(true);
+
+    fetchTotal();
+  }, [router]);
+
+  const deleteList = () => {
+    localStorage.setItem("haven-cart", JSON.stringify([]));
+    setTotal(0);
+  };
+
+  if (!isClient || !isLogged) return <Loading />;
+
+  if (total === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <h1>Your cart is empty</h1>
+        <img
+          src="/images/empty-cart.png"
+          alt="Empty Cart"
+          className={styles.emptyCartImage} 
+        />
       </div>
-    </>
+    );
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <h1>My Cart</h1>
+      <CartList onCartUpdate={fetchTotal} />
+      <div>
+        <h3 className={styles.cartTotal}>Total: ${total}</h3>
+        <button className={styles.deleteCartButton} onClick={deleteList}>
+          Delete List
+        </button>
+      </div>
+    </div>
   );
 }

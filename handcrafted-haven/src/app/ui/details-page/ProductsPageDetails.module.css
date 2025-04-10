@@ -58,7 +58,7 @@
 
 .popup {
   position: fixed;
-  top: 20px;
+  top: 10%;
   right: 20px;
   background-color: #000;
   color: white;

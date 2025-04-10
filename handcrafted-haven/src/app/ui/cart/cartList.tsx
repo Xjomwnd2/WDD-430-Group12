@@ -1,118 +1,79 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  fetchCartList,
-  fetchProductInfo,
-  deleteItemFromCart,
-  changeProductQty,
-} from "@/app/ui/cart/actions";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./CartList.module.css";
+import Image from "next/image";
+
+interface cartItem {
+  product_id: string;
+  qty: number;
+}
 
 interface Product {
   product_id: string;
-  user_id: string;
   title: string;
   description: string;
-  price: number;
+  price: string;
   category: string;
-  images: string[];
 }
 
-export default function CartList() {
-  const [cartList, setCartList] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function CartList({
+  onCartUpdate,
+}: {
+  onCartUpdate: () => void;
+}) {
+  const [cartList, setCartList] = useState<cartItem[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    async function loadCart() {
-      const cart = await fetchCartList();
-      setCartList(cart);
-      setIsLoading(false);
-    }
+    const cart: cartItem[] = JSON.parse(
+      localStorage.getItem("haven-cart") || "[]"
+    );
+    setCartList(cart);
 
-    loadCart();
+    const fetchProducts = async () => {
+      const productPromises = cart.map(async (item) => {
+        const res = await fetch(`/api/products/${item.product_id}`);
+        const data = await res.json();
+        return data;
+      });
+      const results = await Promise.all(productPromises);
+      setProducts(results);
+    };
+
+    fetchProducts();
   }, []);
 
-  if (isLoading) {
-    return <p>Loading your cart...</p>;
-  }
-
-  if (cartList.length > 0) {
-    return (
-      <ul>
-        {cartList.map((product_id) => (
-          <CartItem product_id={product_id} />
-        ))}
-      </ul>
+  const handleDelete = (product_id: string) => {
+    const updatedCart = cartList.filter(
+      (item) => item.product_id !== product_id
     );
-  } else {
-    return <p>No products have been added to your cart.</p>;
-  }
-}
-
-function CartItem({ product_id }: { product_id: string }) {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadProduct() {
-      try {
-        const productData = await fetchProductInfo(product_id);
-        setProduct(productData);
-      } catch (error) {
-        console.error(`Error fetching product ${product_id}:`, error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadProduct();
-  }, [product_id]);
-
-  if (isLoading) {
-    return <li>Loading product details...</li>;
-  }
-
-  if (!product) {
-    return <li>Error: Product not found.</li>;
-  }
+    setCartList(updatedCart);
+    setProducts(products.filter((p) => p.product_id !== product_id));
+    localStorage.setItem("haven-cart", JSON.stringify(updatedCart));
+    onCartUpdate();
+  };
 
   return (
-    <li key={product.product_id}>
-      <h2>{product.title}</h2>
-      <p>Price: ${product.price}</p>
-      <div>
-        {product.images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Product ${product.product_id} image`}
-            style={{
-              width: "100px",
-              height: "100px",
-              objectFit: "cover",
-            }}
-          />
-        ))}
-      </div>
-      <Link href={`/products/${product.product_id}`}>
-        <button>View Details</button>
-      </Link>
-      <div>
-        <button onClick={() => deleteItemFromCart(product_id)}>
-          Delete Item
-        </button>
-        <p>
-          Quantity:{" "}
-          <input
-            type="number"
-            name="qty"
-            onChange={(e) =>
-              changeProductQty(product_id, parseInt(e.target.value))
-            }
-          />
-        </p>
-      </div>
-    </li>
+    <ul className={styles.cartList}>
+      {products.map((product) => {
+        const cartItem = cartList.find(
+          (item) => item.product_id === product.product_id
+        );
+        const qty = cartItem ? cartItem.qty : 0;
+
+        return (
+          <li key={product.product_id}>
+            <h3>{product.title}</h3>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <p>Quantity: {qty}</p>
+            <button onClick={() => handleDelete(product.product_id)}>
+              Delete
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
