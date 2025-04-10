@@ -11,10 +11,12 @@ interface Product {
   product_id: string;
   title: string;
   description: string;
-  price: string;
+  price: number;
   category: string;
   images: string[];
+  user_id?: string;
 }
+
 
 interface Review {
   review_id: number;

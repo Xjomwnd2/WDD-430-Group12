@@ -1,12 +1,13 @@
 interface Product {
   product_id: string;
-  user_id: string;
   title: string;
   description: string;
-  price: number;
+  price: number; 
   category: string;
-  images: [string];
+  images: string[];
+  user_id?: string;
 }
+
 
 interface cartItem {
   product_id: string;
