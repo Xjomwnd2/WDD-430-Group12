@@ -6,13 +6,13 @@ export default function SupportTeamPage() {
       <h1 className={styles.title}>Support Team</h1>
       <div className={styles.profileInfo}>
         <p>
-          Our dedicated support team is here to help you. Whether you're a
+          Our dedicated support team is here to help you. Whether you are a
           seller needing assistance with your shop or a buyer with questions
-          about an order, we're just a message away.
+          about an order, we are just a message away.
         </p>
         <br />
         <p>
-          Contact us anytime through our support form or email, and we'll do our
+          Contact us anytime through our support form or email, and we will do our
           best to assist you promptly.
         </p>
         <br />
