@@ -15,7 +15,6 @@ interface Product {
 }
 
 async function getProducts(): Promise<Product[]> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`/api/products`);
 
   if (!res.ok) {

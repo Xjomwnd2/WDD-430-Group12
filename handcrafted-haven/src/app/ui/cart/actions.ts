@@ -17,7 +17,7 @@ interface cartItem {
 
 export function fetchCartList() {
   try {
-    let cartList = JSON.parse(localStorage.getItem("haven-cart") || "[]");
+    const cartList = JSON.parse(localStorage.getItem("haven-cart") || "[]");
     return cartList;
   } catch (error) {
     console.error("Error parsing cart list:", error);
@@ -63,7 +63,7 @@ export function addProductToCart(product: Product): void {
 }
 
 export function changeProductQty(product_id: string, qty: number) {
-  let cartList: cartItem[] = JSON.parse(
+  const cartList: cartItem[] = JSON.parse(
     localStorage.getItem("haven-cart") || "[]"
   );
   cartList.forEach((item) => {
@@ -75,14 +75,14 @@ export function changeProductQty(product_id: string, qty: number) {
 }
 
 export async function calculateCartTotal() {
-  let cartList: cartItem[] = JSON.parse(
+  const cartList: cartItem[] = JSON.parse(
     localStorage.getItem("haven-cart") || "[]"
   );
   let total: number = 0;
   for (const item of cartList) {
-    let product: Product = await fetchProductInfo(item.product_id);
-    let price = product.price;
-    let subtotal = price * item.qty;
+    const product: Product = await fetchProductInfo(item.product_id);
+    const price = product.price;
+    const subtotal = price * item.qty;
     total += subtotal;
   }
 
