@@ -37,6 +37,7 @@ export default function ProductDetail() {
       .then((data) => {
         if (data) {
           setProduct(data);
+          console.log("Product data:", data);
         } else {
           notFound();
         }
@@ -49,9 +50,9 @@ export default function ProductDetail() {
       .catch((error) => console.error("Error fetching reviews:", error));
   }, [params.id]);
 
-  function addToCart(product_id: string) {
+  function addToCart(product : Product) {
     try{
-      addProductToCart(product_id)
+      addProductToCart(product)
       console.log("Product added to cart:", product);
       setShowPopup(true);
       setTimeout(() => setShowPopup(false), 5000);
@@ -87,7 +88,7 @@ export default function ProductDetail() {
 
       <div>
         <br />
-        <button className={styles.cartButton} onClick={() => addToCart(product.product_id)}>
+        <button className={styles.cartButton} onClick={() => addToCart(product)}>
           Add to Cart
         </button>
       </div>
