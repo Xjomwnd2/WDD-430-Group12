@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import styles from "../../ui/details-page/ProductsPageDetails.module.css";
 import Loading from "../../ui/products-page/loading";
 import { addProductToCart } from "@/app/ui/cart/actions";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
+import Link from "next/link";
 
 interface Product {
   product_id: string;
@@ -16,7 +18,6 @@ interface Product {
   images: string[];
   user_id?: string;
 }
-
 
 interface Review {
   review_id: number;
@@ -52,9 +53,9 @@ export default function ProductDetail() {
       .catch((error) => console.error("Error fetching reviews:", error));
   }, [params.id]);
 
-  function addToCart(product : Product) {
-    try{
-      addProductToCart(product)
+  function addToCart(product: Product) {
+    try {
+      addProductToCart(product);
       console.log("Product added to cart:", product);
       setShowPopup(true);
       setTimeout(() => setShowPopup(false), 5000);
@@ -70,7 +71,12 @@ export default function ProductDetail() {
   return (
     <div className={styles.wrapper}>
       <div>
-        <h1>{product.title}</h1>
+        <div className={styles.arrowContainer}>
+          <Link href="/products" className={styles.backLink}>
+            <IoChevronBackCircleOutline style={{ marginRight: "8px" }} />
+          </Link>
+          <h1>{product.title}</h1>
+        </div>
         <br />
         <p>{product.description}</p>
         <p>
@@ -90,7 +96,10 @@ export default function ProductDetail() {
 
       <div>
         <br />
-        <button className={styles.cartButton} onClick={() => addToCart(product)}>
+        <button
+          className={styles.cartButton}
+          onClick={() => addToCart(product)}
+        >
           Add to Cart
         </button>
       </div>

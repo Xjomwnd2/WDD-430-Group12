@@ -61,7 +61,7 @@ export default function Page() {
       <h1>My Cart</h1>
       <CartList onCartUpdate={fetchTotal} />
       <div>
-        <h3 className={styles.cartTotal}>Total: ${total}</h3>
+      <h3 className={styles.cartTotal}>Total: ${total.toFixed(2)}</h3>
         <button className={styles.deleteCartButton} onClick={deleteList}>
           Delete List
         </button>
