@@ -1,12 +1,11 @@
-// src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-const App = () => {
+function App() {
   return (
     <div>
       <h1>Hello Group 12! 🎉</h1>
-      <p>This is your Vite + React setup.</p>
+      <p>React + Vite is working!</p>
     </div>
   )
 }
