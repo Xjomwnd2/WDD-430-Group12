@@ -12,12 +12,12 @@ export default async function ProductTypesWrapper() {
       />
       <ProductTypeCard
         imageUrl="/images/ceramic.jpg"
-        title="Homegoods"
+        title="Ceramics"
         description="Beautifully designed pieces that blend artistry and everyday utility."
       />
       <ProductTypeCard
-        imageUrl="/images/textile.jpg"
-        title="Clothing / Jewelry"
+        imageUrl="/images/bench.jpg"
+        title="Furniture"
         description="Unique pieces handcrafted to suit your unique style."
       />
     </section>

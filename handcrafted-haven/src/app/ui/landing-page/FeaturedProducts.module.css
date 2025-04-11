@@ -18,7 +18,7 @@
 .wrapper h2 {
  color: rgba(0, 0, 0, 0.9);
  font-family: "Neuton", serif;
- font-size: 5 rem;
+ font-size: 3rem;
  font-weight: 500;
  text-align: left;
  margin-bottom: 2.5rem;
@@ -33,9 +33,10 @@
 }
 
 
-.card-container {
+.container {
   display: flex;
  flex-wrap: wrap;
+ flex-direction: row;
  justify-content: center; /* Centers cards */
  gap: 20px; /* Adds spacing between cards */
  width: 100%;
@@ -76,12 +77,6 @@
  border-radius: 10px 10px 0 0;
 }
 
-
-
-
-.card:nth-child(even) .details {
- order: 2;
-}
 
 
 .details p {

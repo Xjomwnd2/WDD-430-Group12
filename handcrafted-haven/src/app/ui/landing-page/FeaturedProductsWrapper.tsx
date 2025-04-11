@@ -7,9 +7,9 @@ export default async function FeaturedProductsWrapper() {
 
 
  return (
-   <section className="wrapper">
+   <section className={styles.wrapper}>
      <h2>Featured Products</h2>
-     <div className='card-container'>
+     <div className={styles.container}>
      <FeaturedProductCard
        imageUrl="/images/vases.jpeg"
        title="Handmade Vase"
@@ -21,9 +21,9 @@ export default async function FeaturedProductsWrapper() {
        description="An intricately designed wooden sculpture to add charm to your space."
      />  
      <FeaturedProductCard
-       imageUrl="/images/jewlery.jpg"
-       title="Beaded Necklace"
-       description="A stunning, handcrafted beaded necklace to elevate your style."
+       imageUrl="/images/roundTable.jpg"
+       title="Rounded Table"
+       description="A sleek handcrafted table to accent any room."
      />
      </div>
    </section>
@@ -38,7 +38,7 @@ function FeaturedProductCard({ imageUrl, title, description }: {
  description: string;
 }) {
  return (
-   <Link className={styles.card} href="./src/app/featured-products">
+   <section className={styles.card} href="./src/app/featured-products">
      <div className={styles.details}>
        <h3>{title}</h3>
        <p>{description}</p>
@@ -51,7 +51,7 @@ function FeaturedProductCard({ imageUrl, title, description }: {
        height={200}
        objectFit="cover"
      />
-   </Link>
+   </section>
  )}
 
 
